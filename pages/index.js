@@ -17,6 +17,7 @@ export default function Home() {
       </Head>
       <div className='flex justify-center'>
         <Link className="m-2 flex items-center justify-center rounded w-40 h-40 bg-black text-white" href="/DataTable">Data table</Link>
+        <Link className="m-2 flex items-center justify-center rounded w-40 h-40 bg-black text-white" href="/Invoice">Bill</Link>
       </div>
     </>
   )

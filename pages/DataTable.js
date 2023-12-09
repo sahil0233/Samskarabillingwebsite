@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from 'react'
 import axios from 'axios';
+import Link from 'next/link'
 
 const DataTable = () => {
   const [selectedCollection, setSelectedCollection] = useState('');
@@ -88,6 +89,7 @@ const DataTable = () => {
             placeholder="Enter today's gold rate"
           />
         </div>
+        <Link className="ml-2 py-2 px-8 rounded bg-black text-white" href="/Invoice">Bill</Link>
       </div>
       <div className='border-2 shadow-md sm:rounded-lg'>
         <div className='relative m-4 flex w-96 flex-wrap items-stretch'>
