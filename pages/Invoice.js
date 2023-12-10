@@ -111,7 +111,7 @@ const Invoice = () => {
         window.print(); // This triggers the browser's print dialog
       };
   return (
-    <div className='flex flex-col items-center justify-center w-screen'>
+    <div className='flex flex-col items-center justify-center w-screen h-11/12'>
         <div className="w-11/12 m-4 p-4 border-4 border-black invoice-content">
         <div id='invoice-header' className='flex flex-col'>
             <h1 className='font-bold text-center text-2xl tracking-widest' contentEditable={true} onKeyDown={(e) => generalEnterPress(e)}>Samskara Jewels</h1>
