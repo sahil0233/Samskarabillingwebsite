@@ -157,8 +157,8 @@ const DataTable = () => {
                       <th scope='row' className='px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white'>{row.item_number}</th>
                       <td className='px-6 py-4'>{row['sellingPrice']}</td>
                       <td className='px-6 py-4'>{row.purity}</td>
-                      <td className='px-6 py-4'>{row.gross_wt}</td>
                       <td className='px-6 py-4'>{row.kt}</td>
+                      <td className='px-6 py-4'>{row.gross_wt}</td>
                       <td className='px-6 py-4'>{row.net_wt}</td>
                       <td className='px-6 py-4'>{row.dia_wt}</td>
                       <td className='px-6 py-4'>{row.dia_pcs}</td>
