@@ -165,43 +165,45 @@ const Invoice = () => {
                 <thead className='text-xs'>
                     <tr className='align-top'>
                       <th className='print:hidden'></th>
-                        <th className='border border-gray-400'>S.No</th>
-                        <th className='border border-gray-400'>Item code</th>
-                        <th className='border border-gray-400'>Description</th>
-                        <th className='border border-gray-400'>Gross wt.<span className='block text-8px'>(gm)</span></th>
-                        <th className='border border-gray-400'>Net wt.<span className='block text-8px'>(gm)</span></th>
-                        <th className='border border-gray-400'>Fine gold<span className='block text-8px'>(gm)</span></th>
-                        <th className='border border-gray-400'>Gold rate<span className='block text-8px'>(24kt)(per gm)</span></th>
-                        <th className='border border-gray-400'>Net Gold rate</th>
-                        <th className='border border-gray-400'>DIA wt.<span className='block text-8px'>(crt)</span></th>
-                        <th className='border border-gray-400'>DIA rate<span className='block text-8px'>(per crt)</span></th>
-                        <th className='border border-gray-400'>Net DIA rate</th>
-                        <th className='border border-gray-400'>Making charges<span className='block text-8px'>(per gm)</span></th>
-                        <th className='border border-gray-400'>Net making charges</th>
-                        <th className='border border-gray-400'>Net Amount</th>
+                        <th className='border border-gray-400'contentEditable={true} >S.No</th>
+                        <th className='border border-gray-400'contentEditable={true} >Item code</th>
+                        <th className='border border-gray-400'contentEditable={true} >Description</th>
+                        <th className='border border-gray-400'contentEditable={true} >Gross wt.<span className='block text-8px'>(gm)</span></th>
+                        <th className='border border-gray-400'contentEditable={true} >Net wt.<span className='block text-8px'>(gm)</span></th>
+                        <th className='border border-gray-400'contentEditable={true} >Fine gold<span className='block text-8px'>(gm)</span></th>
+                        <th className='border border-gray-400'contentEditable={true} >Gold rate<span className='block text-8px'>(24kt)(per gm)</span></th>
+                        <th className='border border-gray-400'contentEditable={true} >Net Gold rate</th>
+                        <th className='border border-gray-400'contentEditable={true} >DIA wt.<span className='block text-8px'>(crt)</span></th>
+                        <th className='border border-gray-400'contentEditable={true} >DIA rate<span className='block text-8px'>(per crt)</span></th>
+                        <th className='border border-gray-400'contentEditable={true} >Net DIA rate</th>
+                        <th className='border border-gray-400'contentEditable={true} >Making charges<span className='block text-8px'>(per gm)</span></th>
+                        <th className='border border-gray-400'contentEditable={true} >Net making charges</th>
+                        <th className='border border-gray-400'contentEditable={true} >Extra</th>
+                        <th className='border border-gray-400'contentEditable={true} >Net Amount</th>
                     </tr>
                 </thead>
                 <tbody>
                     
                     {tableData.map((rowData,index) => (
                       <tr key={index} className='text-center'>
-                        <td className='print:hidden w-2 cursor-pointer' onClick={() => deleteRow(index)}>X</td>
-                        <td className='border border-gray-400'>{index+1}</td>
+                        <td className='print:hidden w-2 cursor-pointer'onClick={() => deleteRow(index)}>X</td>
+                        <td className='border border-gray-400' contentEditable={true}>{index+1}</td>
                         <td className='border border-gray-400' contentEditable={true}
                           onKeyPress={(e) => handleEnter(e, index)}>
                         </td>
                         <td className='border border-gray-400' contentEditable={true} onKeyDown={(e) => generalEnterPress(e)}></td>
-                        <td className='border border-gray-400'>{rowData.gross_wt}</td>
-                        <td className='border border-gray-400'>{rowData.net_wt}</td>
-                        <td className='border border-gray-400' >{rowData.fine_gold}</td>
+                        <td className='border border-gray-400'contentEditable={true} >{rowData.gross_wt}</td>
+                        <td className='border border-gray-400'contentEditable={true} >{rowData.net_wt}</td>
+                        <td className='border border-gray-400'contentEditable={true}  >{rowData.fine_gold}</td>
                         <td className='border border-gray-400' contentEditable={true} onKeyDown={(e) => handleInputChange(e, index,'gold_rate')}></td>
-                        <td className='border border-gray-400' >{rowData.net_goldrate}</td>
-                        <td className='border border-gray-400'>{rowData.dia_wt}</td>
-                        <td className='border border-gray-400'>{rowData.diamond_rate}</td>
-                        <td className='border border-gray-400'>{rowData.net_diamondrate}</td>
-                        <td className='border border-gray-400'>{rowData.makingchargepergm}</td>
-                        <td className='border border-gray-400'>{rowData.net_makingcharge}</td>
-                        <td className='border border-gray-400'>{rowData.net_amount}</td>
+                        <td className='border border-gray-400' contentEditable={true} >{rowData.net_goldrate}</td>
+                        <td className='border border-gray-400'contentEditable={true} >{rowData.dia_wt}</td>
+                        <td className='border border-gray-400'contentEditable={true} >{rowData.diamond_rate}</td>
+                        <td className='border border-gray-400'contentEditable={true} >{rowData.net_diamondrate}</td>
+                        <td className='border border-gray-400'contentEditable={true} >{rowData.makingchargepergm}</td>
+                        <td className='border border-gray-400'contentEditable={true} >{rowData.net_makingcharge}</td>
+                        <td className='border border-gray-400'contentEditable={true} ></td>
+                        <td className='border border-gray-400'contentEditable={true} >{rowData.net_amount}</td>
                       </tr>
                     ))}
 
