@@ -1,13 +1,13 @@
 import React, {useEffect, useState} from 'react'
 import axios from 'axios';
 import Link from 'next/link'
-
+let finalData = {};
 const DataTable = () => {
   const [selectedCollection, setSelectedCollection] = useState('');
   const [data, setData] = useState([]);
   const [tableHeaders, setTableHeaders] = useState([]);
   const [goldRate, setGoldRate] = useState('');
-  const [finalData, setFinalData] = useState([]);
+  const [tableData, setTableData] = useState([]);
 
   const calculateNetGoldRate = () => {
     const netRateData = data.map(item => {
@@ -20,7 +20,8 @@ const DataTable = () => {
       }
       return { ...item, netGoldRate: netRate, sellingPrice:sp };
     });
-    setFinalData(netRateData);
+    finalData = netRateData;
+    setTableData(finalData);
   };
   useEffect(() => {
     calculateNetGoldRate();
@@ -41,10 +42,10 @@ const DataTable = () => {
     const searchingvalue = document.getElementById('search-item').value.toUpperCase();
     const foundEntry = finalData.find(item => item.item_number === searchingvalue);
     if(foundEntry){
-      setFinalData([foundEntry]);
+      setTableData([foundEntry]);
     }else {
-      alert('Wrong!! Item number')
-      document.getElementById('search-item').value = '';
+      alert('Wrong!! Item number');
+      setTableData(finalData);
     }
   }
 
@@ -93,7 +94,9 @@ const DataTable = () => {
       </div>
       <div className='border-2 shadow-md sm:rounded-lg'>
         <div className='relative m-4 flex w-96 flex-wrap items-stretch'>
-          <input type="search" id='search-item' name='search-item' placeholder='search' className='relative m-0 block min-w-0 flex-auto rounded border border-solid border-neutral-300 bg-transparent bg-clip-padding px-3 py-[0.25rem] text-base font-normal leading-[1.6] text-neutral-700 outline-none transition duration-200 ease-in-out focus:z-[3] focus:border-primary focus:text-neutral-700 focus:shadow-[inset_0_0_0_1px_rgb(59,113,202)] focus:outline-none dark:border-neutral-600 dark:text-neutral-200 dark:placeholder:text-neutral-200 dark:focus:border-primary'></input>
+          <input onKeyDown={(e) => {
+            if(e.key === 'Enter')handleSearch();
+          }} type="search" id='search-item' name='search-item' placeholder='search' className='relative m-0 block min-w-0 flex-auto rounded border border-solid border-neutral-300 bg-transparent bg-clip-padding px-3 py-[0.25rem] text-base font-normal leading-[1.6] text-neutral-700 outline-none transition duration-200 ease-in-out focus:z-[3] focus:border-primary focus:text-neutral-700 focus:shadow-[inset_0_0_0_1px_rgb(59,113,202)] focus:outline-none dark:border-neutral-600 dark:text-neutral-200 dark:placeholder:text-neutral-200 dark:focus:border-primary'></input>
           <button onClick={handleSearch} className='input-group-text flex items-center whitespace-nowrap rounded px-3 py-1.5 text-center text-base font-normal text-neutral-700 dark:text-neutral-200'>
           <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -109,7 +112,7 @@ const DataTable = () => {
         </div>
       
         <div className='flex max-h-screen overflow-y-auto relative overflow-x-auto shadow-md sm:rounded-lg'>
-          { finalData.length > 0 && goldRate ?(
+          { tableData.length > 0 && goldRate ?(
             <table id ="displayed-data" className='w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400'>
               <thead className='text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400 sticky top-0'>
                 <tr>
@@ -126,7 +129,7 @@ const DataTable = () => {
               
                 <tbody>
                 { selectedCollection === 'Polki' ?(
-                  finalData.map((row) => (
+                  tableData.map((row) => (
                     <tr className='odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700' key = {row._id}>
                       <th scope="row" className='px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white'>{row.item_number}</th>
                       <td className='px-6 py-4'>{row['sellingPrice']}</td>
@@ -152,12 +155,12 @@ const DataTable = () => {
                     </tr>
                   ))
                   ): selectedCollection === 'Round' ? (
-                    finalData.map((row) => (
+                    tableData.map((row) => (
                       <tr className='odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700' key = {row._id}>
                       <th scope='row' className='px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white'>{row.item_number}</th>
                       <td className='px-6 py-4'>{row['sellingPrice']}</td>
-                      <td className='px-6 py-4'>{row.purity}</td>
                       <td className='px-6 py-4'>{row.kt}</td>
+                      <td className='px-6 py-4'>{row.purity}</td>
                       <td className='px-6 py-4'>{row.gross_wt}</td>
                       <td className='px-6 py-4'>{row.net_wt}</td>
                       <td className='px-6 py-4'>{row.dia_wt}</td>
